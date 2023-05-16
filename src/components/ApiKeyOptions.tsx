@@ -14,11 +14,10 @@ import { revokeApiKey } from "@/helpers/revoke-api-key";
 import { useRouter } from "next/navigation";
 
 interface ApiKeyOptionsProps {
-  apiKeyId: string;
   apiKeys: string;
 }
 
-const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyId, apiKeys }) => {
+const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeys }) => {
   const router = useRouter();
 
   const [isCreatingNew, setIsCreatingNew] = useState<boolean>(false);
@@ -28,7 +27,7 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyId, apiKeys }) => {
     setIsCreatingNew(true);
 
     try {
-      await revokeApiKey({ keyId: apiKeyId });
+      await revokeApiKey();
       await createApiKey();
       toast({
         title: "Create API Key",
@@ -50,7 +49,7 @@ const ApiKeyOptions: FC<ApiKeyOptionsProps> = ({ apiKeyId, apiKeys }) => {
   const revokeKeys = async () => {
     setIsRevoking(true);
     try {
-      await revokeApiKey({ keyId: apiKeyId });
+      await revokeApiKey();
       toast({
         title: "Revoke API Key",
         message: "Successfully revoked API key",

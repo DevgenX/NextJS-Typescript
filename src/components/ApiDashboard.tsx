@@ -2,7 +2,6 @@ import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
-import { FC } from "react";
 import { formatDistance } from "date-fns";
 import LargeHeading from "./ui/LargeHeading";
 import Paragraph from "@/ui/Paragraph";
@@ -44,7 +43,7 @@ const ApiDashboard = async () => {
       <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-start items-center">
         <Paragraph>Your API Key</Paragraph>
         <Input className="w-fit truncate" readOnly value={activeApiKey.key} />
-        <ApiKeyOptions apiKeyId={activeApiKey.id} apiKeys={activeApiKey.key} />
+        <ApiKeyOptions apiKeys={activeApiKey.key} />
       </div>
 
       <Paragraph className="text-center md:text-left mt-4 -mb-4">
